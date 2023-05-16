@@ -1,0 +1,22 @@
+external_components:
+  - source:
+      type: git
+      url: https://github.com/Carpetner/EH-mlx90641
+    components: [ mlx90641 ]
+
+#local my_components folder
+#  - source: my_components
+#    components: [ mlx90641 ]
+
+i2c:
+    sda: 21
+    scl: 22
+    scan: true
+    frequency: 400kHz
+    
+sensor:
+  - platform: mlx90641
+    ambient:
+      name: Ambient
+    object:
+      name: Object
