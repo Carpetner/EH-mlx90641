@@ -1055,7 +1055,7 @@ void MLX90641Component::update()
     }
 
     read_time = micros();
-//construct frame
+//add aux data to frame
     frame_buf[MLX_FRAME_SIZE -2] = control_reg;
     frame_buf[MLX_FRAME_SIZE -1] = sub_page;
     if (ValidateAuxData(aux_data) == 0) 
@@ -1067,7 +1067,7 @@ void MLX90641Component::update()
     { 
       this->status_set_warning();  return; 
     }
-//add pixel values to frame
+//calculate temperature values to image buffer
     Ta = MLX90641_GetTa(frame_buf, &MlxParams);
     float tr = Ta - ta_shift_;
     MLX90641_CalculateTo(frame_buf, &MlxParams, emmisivity_, tr, image_buf);
